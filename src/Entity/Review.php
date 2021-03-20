@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ReviewRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass=ReviewRepository::class)
  */
 class Review
@@ -29,6 +32,12 @@ class Review
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
+     * @Assert\Length(
+     *     max=5,
+     *     min=0,
+     *     minMessage="Minimum rating is Zero",
+     *     maxMessage="Maximum rating is 5"
+     *     )
      */
     private $rate;
 

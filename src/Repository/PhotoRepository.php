@@ -47,4 +47,9 @@ class PhotoRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function uploadImageToCloud($value)
+    {
+
+    }
+
 }

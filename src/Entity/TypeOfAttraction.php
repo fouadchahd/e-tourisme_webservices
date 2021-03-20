@@ -2,13 +2,26 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\TypeOfAttractionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\Ignore;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TypeOfAttractionRepository::class)
+ * @ApiResource(
+ *     subresourceOperations={
+ *          "api_type_of_attractions_children_types_get_subresource"={
+ *              "method"="GET",
+ *              "normalization_context"={"groups"={"type_children_get_subresource"}}
+ *          },
+ *      }
+ *     )
  */
 class TypeOfAttraction
 {
@@ -16,11 +29,15 @@ class TypeOfAttraction
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"type_children_get_subresource"})
      */
     private $id;
 
     /**
+     * @Groups({"type_children_get_subresource"})
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull(message="please provide a valid type of attraction name")
+     * @Assert\NotBlank(message="please provide a valid type of attraction name")
      */
     private $type;
 
@@ -31,10 +48,12 @@ class TypeOfAttraction
 
     /**
      * @ORM\OneToMany(targetEntity=TypeOfAttraction::class, mappedBy="parentType")
+     * @ApiSubresource(maxDepth=1)
      */
     private $childrenTypes;
 
     /**
+     * @Ignore
      * @ORM\OneToMany(targetEntity=Poi::class, mappedBy="typeOfAttraction", orphanRemoval=true)
      */
     private $pois;

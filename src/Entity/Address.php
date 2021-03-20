@@ -3,11 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\AddressRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
+ * @ApiResource(denormalizationContext={"groups":{"address:write"}})
  * @ORM\Entity(repositoryClass=AddressRepository::class)
  */
 class Address
@@ -20,33 +23,34 @@ class Address
     private $id;
 
     /**
+     * @Groups({"address:write"})
      * @ORM\Column(type="text", nullable=true)
      */
     private $formattedAddress;
 
     /**
+     * @Groups({"address:write"})
+     * @Assert\NotNull(message="latitude propertie should not be null")
      * @ORM\Column(type="float")
      */
     private $latitude;
 
     /**
+     * @Groups({"address:write"})
+     * @Assert\NotNull(message="longitude propertie should not be null")
      * @ORM\Column(type="float")
      */
     private $longitude;
 
     /**
-     * @ORM\ManyToOne(targetEntity=City::class)
+     * @Groups({"address:write"})
+     * @ORM\ManyToOne(targetEntity=City::class,cascade={"persist"})
      */
     private $city;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Poi::class, mappedBy="address")
-     */
-    private $pois;
 
     public function __construct()
     {
-        $this->pois = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -103,33 +107,4 @@ class Address
         return $this;
     }
 
-    /**
-     * @return Collection|Poi[]
-     */
-    public function getPois(): Collection
-    {
-        return $this->pois;
-    }
-
-    public function addPoi(Poi $poi): self
-    {
-        if (!$this->pois->contains($poi)) {
-            $this->pois[] = $poi;
-            $poi->setAddress($this);
-        }
-
-        return $this;
-    }
-
-    public function removePoi(Poi $poi): self
-    {
-        if ($this->pois->removeElement($poi)) {
-            // set the owning side to null (unless already changed)
-            if ($poi->getAddress() === $this) {
-                $poi->setAddress(null);
-            }
-        }
-
-        return $this;
-    }
 }

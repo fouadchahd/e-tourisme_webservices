@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\TypeOfAttraction;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +20,47 @@ class TypeOfAttractionRepository extends ServiceEntityRepository
         parent::__construct($registry, TypeOfAttraction::class);
     }
 
-    // /**
-    //  * @return TypeOfAttraction[] Returns an array of TypeOfAttraction objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?TypeOfAttraction
+    /**
+     * @return TypeOfAttraction[]
+     */
+    public function findGlobalTypes()
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+        $qb=$this->createQueryBuilder('p');
+        return $qb->where($qb->expr()->isNull("p.parentType"))
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult();
     }
-    */
+
+    /**
+     * @param $parentId
+     * @return TypeOfAttraction[]
+     */
+    public function findSubTypesFromParentId($parentId)
+    {
+        $qb=$this->createQueryBuilder('p');
+        return $qb->where('p.parentType = :val')
+            ->setParameter('val',$parentId)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findOneByTypeName($typeName): ?TypeOfAttraction
+    {
+        try {
+            return $this->createQueryBuilder('p')
+                ->andWhere('p.type = :val')
+                ->setParameter('val', $typeName)
+                ->getQuery()
+                ->getOneOrNullResult();
+        } catch (NonUniqueResultException $e) {
+            return null;
+        }
+    }
+
+    public function findMyGlobalType(TypeOfAttraction $typeOfAttraction)
+    {
+        return $this->findOneBy(array('id'=>$typeOfAttraction->getParentType()->getId()),null);
+    }
+
 }

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\PoiRepository;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,6 +11,13 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource(
+ *     subresourceOperations={
+ *          "api_pois_photos_get_subresource"={
+ *              "method"="GET",
+ *          },
+ *      },
+ *     denormalizationContext={"groups"={"poi:write"}})
  * @ORM\Entity(repositoryClass=PoiRepository::class)
  */
 class Poi
@@ -48,6 +57,7 @@ class Poi
 
     /**
      * @ORM\OneToMany(targetEntity=Photo::class, mappedBy="poi", orphanRemoval=true)
+     * @ApiSubresource(maxDepth=1)
      */
     private $photo;
 
@@ -68,10 +78,12 @@ class Poi
     private $typeOfAttraction;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="pois")
+     * @ORM\OneToOne(targetEntity=Address::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $address;
+
+
 
     public function __construct()
     {
@@ -270,9 +282,11 @@ class Poi
         return $this->address;
     }
 
-    public function setAddress(?Address $address): self
+    public function setAddress(Address $address): self
     {
         $this->address = $address;
+
         return $this;
     }
+
 }

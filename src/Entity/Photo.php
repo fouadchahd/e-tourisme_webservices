@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PhotoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass=PhotoRepository::class)
  */
 class Photo
@@ -19,6 +22,7 @@ class Photo
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull(message="The url field should not be null.")
      */
     private $url;
 

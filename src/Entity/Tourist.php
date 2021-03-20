@@ -2,29 +2,48 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TouristRepository;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass=TouristRepository::class)
+ * @UniqueEntity("email",)
  */
 class Tourist implements UserInterface
-{   #id_email_role_password_firstname_lastname_pseudo_registeredAt
+{   #id_email_role_password_firstname_lastname_pseudo_registeredAt_$profilePicture_nationality_gender
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    const Genders = ['NOT SPECIFIED', 'MALE', 'FEMALE' ];
+    const ROLES   = ['ROLE_USER','ROLE_ADMIN'];
     public function __construct()
     {
+        try {
+            $this->pseudo = $this->getFirstName() . $this->getLastName() . random_int(111, 999);
+        } catch (\Exception $e) {
+            $this->pseudo = $this->getFirstName() . $this->getLastName();
+        }
         $this->registeredAt=new DateTime();
+        $this->setRoles(array("ROLE_USER"));
+        $this->setGender(self::Genders[0]);
     }
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotNull
+     * @Assert\Email( message = "The email '{{ value }}' is not a valid email.")
      */
     private $email;
 
@@ -36,6 +55,7 @@ class Tourist implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotNull(message="the password field should not be null")
      */
     private $password;
 
@@ -51,16 +71,19 @@ class Tourist implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
+     * @Assert\Choice(choices=Tourist::Genders, message="Choose a valid gender.")
      */
     private $gender;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull
      */
     private $lastName;
 
@@ -81,6 +104,13 @@ class Tourist implements UserInterface
     }
     public function getPseudo(): ?string
     {
+        if(is_null($this->pseudo) || empty($this->pseudo)){
+            try {
+                return $this->getFirstName() . $this->getLastName() . random_int(111, 999);
+            } catch (\Exception $e) {
+                return $this->getFirstName() . $this->getLastName();
+            }
+        }
         return $this->pseudo;
     }
 
@@ -118,15 +148,13 @@ class Tourist implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
+        #$roles[] = 'ROLE_USER';
         return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
         return $this;
     }
 
@@ -140,8 +168,8 @@ class Tourist implements UserInterface
 
     public function setPassword(string $password): self
     {
-        $this->password = $password;
-
+        $hashedPassword=$password;
+        $this->password = $hashedPassword;
         return $this;
     }
 

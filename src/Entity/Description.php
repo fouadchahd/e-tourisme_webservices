@@ -2,14 +2,17 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\DescriptionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass=DescriptionRepository::class)
  */
 class Description
-{
+{#content_languageIRI_poiIRI
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -18,17 +21,20 @@ class Description
     private $id;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="text")
      */
     private $content;
 
     /**
+     * @Assert\NotNull
      * @ORM\ManyToOne(targetEntity=Language::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $language;
 
     /**
+     * @Assert\NotNull
      * @ORM\ManyToOne(targetEntity=Poi::class, inversedBy="description")
      * @ORM\JoinColumn(nullable=false)
      */
