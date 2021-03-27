@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * @ApiResource(denormalizationContext={"groups":{"address:write"}})
+ * @ApiResource()
  * @ORM\Entity(repositoryClass=AddressRepository::class)
  */
 class Address
@@ -23,27 +23,27 @@ class Address
     private $id;
 
     /**
-     * @Groups({"address:write"})
+     * @Groups({"poi:write","poi_item:read"})
      * @ORM\Column(type="text", nullable=true)
      */
     private $formattedAddress;
 
     /**
-     * @Groups({"address:write"})
+     * @Groups({"poi:write","poi_item:read"})
      * @Assert\NotNull(message="latitude propertie should not be null")
      * @ORM\Column(type="float")
      */
     private $latitude;
 
     /**
-     * @Groups({"address:write"})
+     * @Groups({"poi:write","poi_item:read"})
      * @Assert\NotNull(message="longitude propertie should not be null")
      * @ORM\Column(type="float")
      */
     private $longitude;
 
     /**
-     * @Groups({"address:write"})
+     * @Groups({"poi:write","poi_item:read"})
      * @ORM\ManyToOne(targetEntity=City::class,cascade={"persist"})
      */
     private $city;

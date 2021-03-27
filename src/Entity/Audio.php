@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AudioRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -21,12 +22,14 @@ class Audio
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"poi:write","poi_item:read"})
      */
     private $url;
 
     /**
      * @ORM\ManyToOne(targetEntity=Language::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"poi:write","poi_item:read"})
      */
     private $language;
 

@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\LanguageRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -19,18 +20,21 @@ class Language
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"poi:write"})
      */
     private $id;
 
     /**
      * @Assert\NotNull(message="the language name should not be null")
      * @ORM\Column(type="string", length=255)
+     * @Groups({"poi_item:read"})
      */
     private $name;
 
     /**
      * @Assert\Language(message="the language code should respect the Unicode language identifier as: fr,en,ar ")
      * @ORM\Column(type="string", length=10)
+     * @Groups({"poi_item:read"})
      */
     private $languageCode;
 

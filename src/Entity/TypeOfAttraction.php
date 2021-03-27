@@ -2,15 +2,18 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\TypeOfAttractionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\Ignore;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
 
 /**
  * @ORM\Entity(repositoryClass=TypeOfAttractionRepository::class)
@@ -20,11 +23,18 @@ use Symfony\Component\Validator\Constraints as Assert;
  *              "method"="GET",
  *              "normalization_context"={"groups"={"type_children_get_subresource"}}
  *          },
+ *           "children_types_get_subresource"={
+ *               "path"="/type_of_attractions/{id}/children.{_format}"
+ *          }
  *      }
  *     )
+ * @ApiFilter(ExistsFilter::class, properties={"parentType"})
+ * @UniqueEntity("type",message="this type name is already used")
  */
 class TypeOfAttraction
 {
+    #api/type_of_attractions.json?exists[parentType]=true
+    #api/type_of_attractions/{id}/children.json
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -34,7 +44,7 @@ class TypeOfAttraction
     private $id;
 
     /**
-     * @Groups({"type_children_get_subresource"})
+     * @Groups({"type_children_get_subresource","poi_item:read"})
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull(message="please provide a valid type of attraction name")
      * @Assert\NotBlank(message="please provide a valid type of attraction name")
@@ -43,11 +53,12 @@ class TypeOfAttraction
 
     /**
      * @ORM\ManyToOne(targetEntity=TypeOfAttraction::class, inversedBy="childrenTypes")
+     * @Groups({"poi_item:read"})
      */
     private $parentType;
 
     /**
-     * @ORM\OneToMany(targetEntity=TypeOfAttraction::class, mappedBy="parentType")
+     * @ORM\OneToMany(targetEntity=TypeOfAttraction::class, mappedBy="parentType",orphanRemoval=true)
      * @ApiSubresource(maxDepth=1)
      */
     private $childrenTypes;

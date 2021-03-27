@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\DescriptionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -23,6 +24,7 @@ class Description
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="text")
+     * @Groups({"poi:write","poi_item:read"})
      */
     private $content;
 
@@ -30,6 +32,7 @@ class Description
      * @Assert\NotNull
      * @ORM\ManyToOne(targetEntity=Language::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"poi:write","poi_item:read"})
      */
     private $language;
 

@@ -2,21 +2,23 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TouristRepository;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass=TouristRepository::class)
- * @UniqueEntity("email",)
+ * @UniqueEntity("email")
+ * @ApiFilter(BooleanFilter::class,properties={"isAdmin"})
  */
 class Tourist implements UserInterface
 {   #id_email_role_password_firstname_lastname_pseudo_registeredAt_$profilePicture_nationality_gender
@@ -31,11 +33,7 @@ class Tourist implements UserInterface
     const ROLES   = ['ROLE_USER','ROLE_ADMIN'];
     public function __construct()
     {
-        try {
-            $this->pseudo = $this->getFirstName() . $this->getLastName() . random_int(111, 999);
-        } catch (\Exception $e) {
-            $this->pseudo = $this->getFirstName() . $this->getLastName();
-        }
+
         $this->registeredAt=new DateTime();
         $this->setRoles(array("ROLE_USER"));
         $this->setGender(self::Genders[0]);
@@ -97,6 +95,11 @@ class Tourist implements UserInterface
      */
     private $profilePicture;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isAdmin;
+
 
     public function getId(): ?int
     {
@@ -107,7 +110,7 @@ class Tourist implements UserInterface
         if(is_null($this->pseudo) || empty($this->pseudo)){
             try {
                 return $this->getFirstName() . $this->getLastName() . random_int(111, 999);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 return $this->getFirstName() . $this->getLastName();
             }
         }
@@ -168,8 +171,8 @@ class Tourist implements UserInterface
 
     public function setPassword(string $password): self
     {
-        $hashedPassword=$password;
-        $this->password = $hashedPassword;
+        #$hashedPassword= password_hash($password,PASSWORD_ARGON2ID, ['memory_cost' => 65536, 'time_cost' => 4, 'threads' => 1]);
+        $this->password = $password;
         return $this;
     }
 
@@ -261,6 +264,18 @@ class Tourist implements UserInterface
     public function setProfilePicture(?Photo $profilePicture): self
     {
         $this->profilePicture = $profilePicture;
+
+        return $this;
+    }
+
+    public function getIsAdmin(): ?bool
+    {
+        return $this->isAdmin;
+    }
+
+    public function setIsAdmin(bool $isAdmin): self
+    {
+        $this->isAdmin = $isAdmin;
 
         return $this;
     }

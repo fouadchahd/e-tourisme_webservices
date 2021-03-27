@@ -19,12 +19,13 @@ class City
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * 0@Groups({"address:write"})
+     * 0@Groups({"poi:write","poi_item:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255,unique=true)
+     * @Groups({"poi_item:read"})
      */
     private $name;
 

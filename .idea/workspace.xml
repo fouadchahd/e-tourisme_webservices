@@ -10,31 +10,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b77791d-ea00-4377-8409-cf7c6625dcd8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/packages/api_platform.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/nelmio_cors.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/routes/api_platform.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210315025039.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210319032251.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210319050725.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/LanguageController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/PhotoController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/PoiController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/TouristController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/TypeOfAttractionController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/language/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/photo/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/poi/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/tourist/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/type_of_attraction/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Webservices.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Webservices.iml" afterDir="false" />
+    <list default="true" id="7b77791d-ea00-4377-8409-cf7c6625dcd8" name="Default Changelist" comment="&quot;api platform for post request applied &quot;">
+      <change afterPath="$PROJECT_DIR$/src/EventsSubscriber/PasswordEncoderSubscriber.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EventsSubscriber/PoiUpdatedAtSubscriber.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Address.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Audio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Audio.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/City.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/City.php" afterDir="false" />
@@ -42,13 +23,8 @@
       <change beforePath="$PROJECT_DIR$/src/Entity/Language.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Language.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Photo.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Photo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Poi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Poi.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Review.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Review.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Tourist.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tourist.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/TypeOfAttraction.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TypeOfAttraction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/PhotoRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/PhotoRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/PoiRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/PoiRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TypeOfAttractionRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TypeOfAttractionRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,6 +192,9 @@
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\ENSAK\GENIE INFO\REACTSympony\Symfony_project\Webservices\src\EventsSubscriber" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\ENSAK\GENIE INFO\REACTSympony\Symfony_project\Webservices" />
     </key>
@@ -241,8 +220,19 @@
       <workItem from="1615888293679" duration="14366000" />
       <workItem from="1615944595159" duration="4801000" />
       <workItem from="1616119989924" duration="10469000" />
-      <workItem from="1616202351605" duration="8320000" />
+      <workItem from="1616202351605" duration="16422000" />
+      <workItem from="1616294514217" duration="11269000" />
+      <workItem from="1616500476856" duration="2271000" />
+      <workItem from="1616813601520" duration="4145000" />
     </task>
+    <task id="LOCAL-00001" summary="&quot;api platform for post request applied &quot;">
+      <created>1616211797139</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1616211797139</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,6 +252,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="&quot;api platform for post request applied &quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;api platform for post request applied &quot;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="493" y="242" key="#Composer" timestamp="1615051484889">
@@ -272,18 +264,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="437" y="186" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1615291006030" />
-    <state x="488" y="44" key="#com.intellij.ide.util.MemberChooser" timestamp="1616210149076">
+    <state x="488" y="44" key="#com.intellij.ide.util.MemberChooser" timestamp="1616215410937">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="44" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1616210149076" />
+    <state x="488" y="44" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1616215410937" />
     <state x="320" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1615713387024">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="320" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728@0.0.1366.728" timestamp="1615713387024" />
-    <state x="413" y="117" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1615292043032">
+    <state x="413" y="117" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1616215430627">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="117" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1615292043032" />
+    <state x="413" y="117" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1616215430627" />
     <state x="460" y="275" key="ComposerInitDialogKey" timestamp="1615899305012">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -308,6 +300,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1322" height="392" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1615785142443" />
+    <state x="394" y="85" key="NewPhpClassDialog" timestamp="1616215384115">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="394" y="85" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1616215384115" />
     <state x="339" y="157" key="run.anything.popup" timestamp="1615894798977">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
