@@ -13,38 +13,42 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\Ignore;
 use Symfony\Component\Validator\Constraints as Assert;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\{SearchFilter,ExistsFilter};
 
 /**
  * @ORM\Entity(repositoryClass=TypeOfAttractionRepository::class)
  * @ApiResource(
  *     subresourceOperations={
- *          "api_type_of_attractions_children_types_get_subresource"={
+ *          "type_of_attractions_children_types_get_subresource"={
  *              "method"="GET",
- *              "normalization_context"={"groups"={"type_children_get_subresource"}}
+ *              "normalization_context"={"groups"={"read_subresource"}}
  *          },
  *           "children_types_get_subresource"={
- *               "path"="/type_of_attractions/{id}/children.{_format}"
+ *               "path"="/type_of_attractions/{id}/children.{_format}",
  *          }
  *      }
  *     )
  * @ApiFilter(ExistsFilter::class, properties={"parentType"})
+ * @ApiFilter(SearchFilter::class, properties={"parentType": "exact"})
  * @UniqueEntity("type",message="this type name is already used")
  */
 class TypeOfAttraction
 {
     #api/type_of_attractions.json?exists[parentType]=true
     #api/type_of_attractions/{id}/children.json
+    #api/type_of_attractions.json?parentType=11
+    #api/type_of_attractions.json?parentType%5B%5D=11&parentType%5B%5D=12
+    #api/type_of_attractions.json?parentType[]=11&parentType[]=12
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\Column(type="integer")
-     * @Groups({"type_children_get_subresource"})
+     * @Groups({"read_subresource"})
      */
     private $id;
 
     /**
-     * @Groups({"type_children_get_subresource","poi_item:read"})
+     * @Groups({"read_subresource","poi_item:read"})
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull(message="please provide a valid type of attraction name")
      * @Assert\NotBlank(message="please provide a valid type of attraction name")

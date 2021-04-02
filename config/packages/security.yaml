@@ -13,14 +13,88 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        refresh:
+            pattern:  ^/api/token/refresh
+            stateless: true
+            anonymous: true
+        login:
+            pattern:  ^/api/login
+            stateless: true
+            anonymous: true
+            json_login:
+                check_path:               /api/login_check
+                success_handler:          lexik_jwt_authentication.handler.authentication_success
+                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
+        tourist:
+            pattern: ^/api/tourists
+            methods: [PUT,PATCH,DELETE]
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+        address:
+            pattern:   ^/api/addresses
+            methods: [PUT,PATCH,DELETE,POST]
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
+        review:
+            pattern:   ^/api/reviews
+            methods: [PUT,PATCH,DELETE,POST]
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+        poi:
+            pattern:   ^/api/pois
+            methods: [PUT,PATCH,DELETE,POST]
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+        media:
+            pattern:   ^/api/(audios|photos)
+            methods: [PUT,PATCH,DELETE,POST]
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+        desc:
+            pattern: ^api/descriptions
+            methods: [PUT,PATCH,DELETE,POST]
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+        city:
+            pattern:   ^/api/cities
+            methods: [PUT,PATCH,DELETE,POST]
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+        typeofattraction:
+            pattern:   ^/api/type_of_attractions
+            methods: [PUT,PATCH,DELETE,POST]
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+        language:
+            pattern:  ^api/languages
+            methods: [PUT,PATCH,DELETE,POST]
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
         main:
             anonymous: true
             lazy: true
             provider: app_user_provider
-
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
-
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
@@ -29,3 +103,16 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/api/reviews,roles: IS_AUTHENTICATED_FULLY, methods:['POST','PUT','DELETE','PATCH']}
+        - { path: ^/api,        roles:[ROLE_ADMIN], methods:['DELETE','PATCH']}
+        - { path: ^/api/tourists, roles: [IS_AUTHENTICATED_FULLY,ROLE_ADMIN], methods:['PUT']}
+        - { path: ^/api/cities, roles: [ROLE_ADMIN], methods:['POST','PUT']}
+        - { path: ^/api/pois,   roles: ROLE_ADMIN, methods:['POST','PUT']}
+        - { path: ^/api/type_of_attractions, roles: ROLE_ADMIN, methods:['POST','PUT']}
+        - { path: ^/api/audios, roles: ROLE_ADMIN, methods:['POST','PUT']}
+        - { path: ^/api/reviews,roles: IS_AUTHENTICATED_FULLY, methods:['POST','PUT']}
+        - { path: ^/api/cities, roles: IS_AUTHENTICATED_FULLY, methods:['POST','PUT']}
+        - { path: ^/api/descriptions, roles: ROLE_ADMIN, methods:['POST','PUT']}
+        - { path: ^/api/languages, roles: ROLE_ADMIN, methods:['POST','PUT']}
+        - { path: ^/api/login,  roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/token/refresh,roles: IS_AUTHENTICATED_ANONYMOUSLY}

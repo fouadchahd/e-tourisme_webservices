@@ -9,7 +9,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     denormalizationContext={"groups"={"city:write"}},
+ *     normalizationContext={"skip_null_values"=false,"groups"={"city:read"}})
  * @ORM\Entity(repositoryClass=CityRepository::class)
  * @UniqueEntity("name",message="this city name is already used")
  */
@@ -19,15 +21,21 @@ class City
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * 0@Groups({"poi:write","poi_item:read"})
+     * @Groups({"poi:write","poi_item:read","city:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255,unique=true)
-     * @Groups({"poi_item:read"})
+     * @Groups({"poi_item:read","city:write","city:read"})
      */
     private $name;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Photo::class, cascade={"persist", "remove"})
+     * @Groups({"city:write","city:read"})
+     */
+    private $photo;
 
     public function getId(): ?int
     {
@@ -42,6 +50,18 @@ class City
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?Photo
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?Photo $photo): self
+    {
+        $this->photo = $photo;
 
         return $this;
     }

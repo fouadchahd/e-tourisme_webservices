@@ -37,6 +37,7 @@ class Tourist implements UserInterface
         $this->registeredAt=new DateTime();
         $this->setRoles(array("ROLE_USER"));
         $this->setGender(self::Genders[0]);
+        $this->isAdmin=false;
     }
     /**
      * @ORM\Column(type="string", length=180, unique=true)

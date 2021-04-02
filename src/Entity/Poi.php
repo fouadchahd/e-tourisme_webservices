@@ -7,12 +7,13 @@ use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\PoiRepository;
+use DateTime;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\{SearchFilter};
 
 /**
  * @ApiResource(
@@ -20,6 +21,9 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ SearchFilter;
  *          "api_pois_photos_get_subresource"={
  *              "method"="GET",
  *          },
+ *           "childrens_get_subresource"={
+ *               "path"="/pois/{id}/children.{_format}"
+ *     }
  *      },
  *     denormalizationContext={
  *          "groups"={
@@ -114,6 +118,12 @@ class Poi
      */
     private $address;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Review::class, mappedBy="poi", orphanRemoval=true)
+     * @ApiSubresource(maxDepth=1)
+     */
+    private $reviews;
+
 
 
     public function __construct()
@@ -122,7 +132,8 @@ class Poi
         $this->audio = new ArrayCollection();
         $this->photo = new ArrayCollection();
         $this->children = new ArrayCollection();
-        $this->createdAt=new \DateTime();
+        $this->createdAt=new DateTime();
+        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -321,4 +332,47 @@ class Poi
         return $this;
     }
 
+    /**
+     * @return Collection|Review[]
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->setPoi($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): self
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getPoi() === $this) {
+                $review->setPoi(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getTotalReviews(){
+        return $this->reviews->count();
+    }
+    public function getRating() :int
+    {
+        $reviews=$this->reviews;
+        $som=0;
+       foreach ($reviews as $review){
+           $som+=$review->getRate();
+       }
+        return $som/$reviews->count();
+
+    }
 }

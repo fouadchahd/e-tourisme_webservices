@@ -18,6 +18,7 @@ class Photo
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"city:read"})
      */
     private $id;
 
@@ -25,13 +26,13 @@ class Photo
      * @var string|null
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull(message="The url field should not be null.")
-     * @Groups({"poi:write","poi_item:read"})
+     * @Groups({"poi:write","poi_item:read","city:write","city:read"})
      */
     private $url;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"poi:write","poi_item:read"})
+     * @Groups({"poi:write","poi_item:read","city:write","city:read"})
      */
     private $alt;
 
