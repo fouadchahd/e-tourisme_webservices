@@ -11,17 +11,21 @@ use Doctrine\ORM\Mapping as ORM;
 use Exception;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ * attributes={"pagination_client_enabled"=true,"pagination_client_items_per_page"=true,normalizationContext={"groups"={"tourist:read"}}},
+ * )
  * @ORM\Entity(repositoryClass=TouristRepository::class)
  * @UniqueEntity("email")
  * @ApiFilter(BooleanFilter::class,properties={"isAdmin"})
  */
 class Tourist implements UserInterface
-{   #id_email_role_password_firstname_lastname_pseudo_registeredAt_$profilePicture_nationality_gender
+{   #id_email_role_password_firstname_lastname_pseudo_registeredAt_profilePicture_nationality_gender
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -43,11 +47,13 @@ class Tourist implements UserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\NotNull
      * @Assert\Email( message = "The email '{{ value }}' is not a valid email.")
+     * @Groups({"tourist:read"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"tourist:read"})
      */
     private $roles = [];
 
@@ -60,44 +66,52 @@ class Tourist implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"tourist:read"})
      */
     private $nationality;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"tourist:read"})
      */
     private $pseudo;
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
      * @Assert\Choice(choices=Tourist::Genders, message="Choose a valid gender.")
+     * @Groups({"tourist:read"})
      */
     private $gender;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull
+     * @Groups({"tourist:read"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull
+     * @Groups({"tourist:read"})
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"tourist:read"})
      */
     private $registeredAt;
 
     /**
      * @ORM\OneToOne(targetEntity=Photo::class, cascade={"persist", "remove"})
+     * @Groups({"tourist:read"})
      */
     private $profilePicture;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"tourist:read"})
      */
     private $isAdmin;
 

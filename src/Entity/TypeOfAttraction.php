@@ -18,6 +18,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\{SearchFilter,ExistsFilter};
 /**
  * @ORM\Entity(repositoryClass=TypeOfAttractionRepository::class)
  * @ApiResource(
+ *     normalizationContext={"groups"={"toa:read"}},
  *     subresourceOperations={
  *          "type_of_attractions_children_types_get_subresource"={
  *              "method"="GET",
@@ -34,7 +35,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\{SearchFilter,ExistsFilter};
  */
 class TypeOfAttraction
 {
-    #api/type_of_attractions.json?exists[parentType]=true
+    #api/type_of_attractions.json?exists[parentType]=true/false
     #api/type_of_attractions/{id}/children.json
     #api/type_of_attractions.json?parentType=11
     #api/type_of_attractions.json?parentType%5B%5D=11&parentType%5B%5D=12
@@ -43,12 +44,12 @@ class TypeOfAttraction
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\Column(type="integer")
-     * @Groups({"read_subresource"})
+     * @Groups({"read_subresource","toa:read"})
      */
     private $id;
 
     /**
-     * @Groups({"read_subresource","poi_item:read"})
+     * @Groups({"read_subresource","toa:read","poi_item:read"})
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull(message="please provide a valid type of attraction name")
      * @Assert\NotBlank(message="please provide a valid type of attraction name")
@@ -64,6 +65,7 @@ class TypeOfAttraction
     /**
      * @ORM\OneToMany(targetEntity=TypeOfAttraction::class, mappedBy="parentType",orphanRemoval=true)
      * @ApiSubresource(maxDepth=1)
+     * @Groups({"toa:read"})
      */
     private $childrenTypes;
 
