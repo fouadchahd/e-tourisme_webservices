@@ -17,10 +17,13 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 
 /**
  * @ApiResource(
- * attributes={"pagination_client_enabled"=true,"pagination_client_items_per_page"=true,normalizationContext={"groups"={"tourist:read"}}},
+ * attributes={"pagination_client_enabled"=true,
+ *     "pagination_client_items_per_page"=true
+ *    },
+ * normalizationContext={"groups"={"tourist:read"}}
  * )
  * @ORM\Entity(repositoryClass=TouristRepository::class)
- * @UniqueEntity("email")
+ * @UniqueEntity("email",message="this email is already used")
  * @ApiFilter(BooleanFilter::class,properties={"isAdmin"})
  */
 class Tourist implements UserInterface
@@ -30,6 +33,7 @@ class Tourist implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"tourist:read"})
      */
     private $id;
 
@@ -61,6 +65,7 @@ class Tourist implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Assert\NotNull(message="the password field should not be null")
+     * @Assert\NotBlank
      */
     private $password;
 
@@ -86,6 +91,7 @@ class Tourist implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull
+     * @Assert\NotBlank
      * @Groups({"tourist:read"})
      */
     private $firstName;
@@ -93,6 +99,7 @@ class Tourist implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull
+     * @Assert\NotBlank
      * @Groups({"tourist:read"})
      */
     private $lastName;
@@ -173,6 +180,9 @@ class Tourist implements UserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+        if(in_array('ROLE_ADMIN',$roles)){
+            $this->setIsAdmin(true);
+        }
         return $this;
     }
 
