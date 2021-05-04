@@ -20,7 +20,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
  * attributes={"pagination_client_enabled"=true,
  *     "pagination_client_items_per_page"=true
  *    },
- * normalizationContext={"groups"={"tourist:read"}}
+ * normalizationContext={"groups"={"tourist:read"},"skip_null_values"=false}
  * )
  * @ORM\Entity(repositoryClass=TouristRepository::class)
  * @UniqueEntity("email",message="this email is already used")
@@ -66,6 +66,7 @@ class Tourist implements UserInterface
      * @ORM\Column(type="string")
      * @Assert\NotNull(message="the password field should not be null")
      * @Assert\NotBlank
+     * @Assert\Length(min=8,minMessage="Use at least 8 characters")
      */
     private $password;
 
@@ -129,13 +130,6 @@ class Tourist implements UserInterface
     }
     public function getPseudo(): ?string
     {
-        if(is_null($this->pseudo) || empty($this->pseudo)){
-            try {
-                return $this->getFirstName() . $this->getLastName() . random_int(111, 999);
-            } catch (Exception $e) {
-                return $this->getFirstName() . $this->getLastName();
-            }
-        }
         return $this->pseudo;
     }
 

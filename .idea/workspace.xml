@@ -14,11 +14,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b77791d-ea00-4377-8409-cf7c6625dcd8" name="Default Changelist" comment="&quot;some change applied on tourist normalization  &quot;">
-      <change beforePath="$PROJECT_DIR$/.idea/Webservices.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Webservices.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Photo.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Photo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Tourist.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tourist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,6 +244,9 @@
       <workItem from="1617361901510" duration="2658000" />
       <workItem from="1617703832190" duration="6130000" />
       <workItem from="1619097939728" duration="16797000" />
+      <workItem from="1619259044654" duration="14935000" />
+      <workItem from="1620038703444" duration="447000" />
+      <workItem from="1620041274417" duration="5603000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;api platform for post request applied &quot;">
       <created>1616211797139</created>
