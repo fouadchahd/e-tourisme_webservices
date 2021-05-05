@@ -42,7 +42,9 @@ class JWTCreateSubscriber
                 'id'        => $currentUser->getId(),
                 'email'     => $currentUser->getEmail(),
                 'pseudo'    => $currentUser->getPseudo(),
-                'gender'    =>$currentUser->getGender(),
+                'firstName' => $currentUser->getLastName(),
+                'lastName'  => $currentUser->getLastName(),
+                'gender'    => $currentUser->getGender(),
                 'roles'     => $currentUser->getRoles(),
             );
         }

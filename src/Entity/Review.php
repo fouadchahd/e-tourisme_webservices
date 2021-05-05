@@ -10,9 +10,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource(denormalizationContext={
+ * @ApiResource(
+ *     attributes={"pagination_client_enabled"=true,
+ *     "pagination_client_items_per_page"=true
+ *    },
+ *     denormalizationContext={
  *     "groups"={"review:write"}
- *     })
+ *     }),
  *
  * @ORM\Entity(repositoryClass=ReviewRepository::class)
  */

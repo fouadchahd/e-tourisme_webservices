@@ -17,6 +17,9 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\{SearchFilter};
 
 /**
  * @ApiResource(
+ *     attributes={"pagination_client_enabled"=true,
+ *     "pagination_client_items_per_page"=true
+ *    },
  *     subresourceOperations={
  *          "api_pois_photos_get_subresource"={
  *              "method"="GET",

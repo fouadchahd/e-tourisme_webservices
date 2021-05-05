@@ -8,12 +8,13 @@ use App\Repository\TouristRepository;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
-use Exception;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+
 
 /**
  * @ApiResource(
@@ -25,6 +26,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
  * @ORM\Entity(repositoryClass=TouristRepository::class)
  * @UniqueEntity("email",message="this email is already used")
  * @ApiFilter(BooleanFilter::class,properties={"isAdmin"})
+ * @ApiFilter (SearchFilter::class, properties={"id": "exact", "pseudo": "istart","lastName": "istart" ,"firstName": "istart","$nationality":"iexact"})
  */
 class Tourist implements UserInterface
 {   #id_email_role_password_firstname_lastname_pseudo_registeredAt_profilePicture_nationality_gender
@@ -50,6 +52,7 @@ class Tourist implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\NotNull
+     * @Assert\NotBlank
      * @Assert\Email( message = "The email '{{ value }}' is not a valid email.")
      * @Groups({"tourist:read"})
      */

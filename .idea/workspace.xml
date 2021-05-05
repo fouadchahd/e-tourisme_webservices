@@ -13,10 +13,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b77791d-ea00-4377-8409-cf7c6625dcd8" name="Default Changelist" comment="&quot;some change applied on tourist normalization  &quot;">
+    <list default="true" id="7b77791d-ea00-4377-8409-cf7c6625dcd8" name="Default Changelist" comment="&quot;some change applied on tourist pagination  &quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Photo.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Photo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Poi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Poi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Review.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Review.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Tourist.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tourist.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EventsSubscriber/JWTCreateSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventsSubscriber/JWTCreateSubscriber.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +248,7 @@
       <workItem from="1619097939728" duration="16797000" />
       <workItem from="1619259044654" duration="14935000" />
       <workItem from="1620038703444" duration="447000" />
-      <workItem from="1620041274417" duration="5603000" />
+      <workItem from="1620041274417" duration="16433000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;api platform for post request applied &quot;">
       <created>1616211797139</created>
@@ -276,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619108982655</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="&quot;some change applied on tourist pagination  &quot;">
+      <created>1620092685460</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1620092685488</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,7 +309,8 @@
     <MESSAGE value="backend finished without security roles" />
     <MESSAGE value="&quot;security applied with jw Token and refresh Token &quot;" />
     <MESSAGE value="&quot;some change applied on tourist normalization  &quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;some change applied on tourist normalization  &quot;" />
+    <MESSAGE value="&quot;some change applied on tourist pagination  &quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;some change applied on tourist pagination  &quot;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="493" y="242" key="#Composer" timestamp="1615051484889">
@@ -351,10 +361,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="394" y="85" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1617198235972" />
-    <state x="275" y="95" key="Vcs.Push.Dialog.v2" timestamp="1619108993738">
+    <state x="275" y="95" key="Vcs.Push.Dialog.v2" timestamp="1620093181193">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="95" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1619108993738" />
+    <state x="275" y="95" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1620093181193" />
     <state x="339" y="157" key="run.anything.popup" timestamp="1615894798977">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
