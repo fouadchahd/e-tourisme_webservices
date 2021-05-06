@@ -1,0 +1,10 @@
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="text.not_blank">
+                <source>text.not_blank</source>
+                <target>Ce champ ne doit pas être vide</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -14,11 +14,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b77791d-ea00-4377-8409-cf7c6625dcd8" name="Default Changelist" comment="&quot;some change applied on tourist pagination  &quot;">
+      <change afterPath="$PROJECT_DIR$/translations/validators.fr.xlf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Webservices.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Webservices.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Poi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Poi.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Review.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Review.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Tourist.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tourist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventsSubscriber/JWTCreateSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventsSubscriber/JWTCreateSubscriber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,24 +171,6 @@
       <path value="$PROJECT_DIR$/vendor/lexik/jwt-authentication-bundle" />
       <path value="$PROJECT_DIR$/vendor/namshi/jose" />
       <path value="$PROJECT_DIR$/vendor/gesdinet/jwt-refresh-token-bundle" />
-      <path value="$PROJECT_DIR$/vendor/amphp/windows-registry" />
-      <path value="$PROJECT_DIR$/vendor/amphp/socket" />
-      <path value="$PROJECT_DIR$/vendor/league/uri-parser" />
-      <path value="$PROJECT_DIR$/vendor/amphp/serialization" />
-      <path value="$PROJECT_DIR$/vendor/amphp/process" />
-      <path value="$PROJECT_DIR$/vendor/amphp/parser" />
-      <path value="$PROJECT_DIR$/vendor/amphp/http-client" />
-      <path value="$PROJECT_DIR$/vendor/amphp/hpack" />
-      <path value="$PROJECT_DIR$/vendor/amphp/http" />
-      <path value="$PROJECT_DIR$/vendor/amphp/dns" />
-      <path value="$PROJECT_DIR$/vendor/amphp/byte-stream" />
-      <path value="$PROJECT_DIR$/vendor/amphp/cache" />
-      <path value="$PROJECT_DIR$/vendor/amphp/amp" />
-      <path value="$PROJECT_DIR$/vendor/league/uri" />
-      <path value="$PROJECT_DIR$/vendor/league/uri-interfaces" />
-      <path value="$PROJECT_DIR$/vendor/kelunik/certificate" />
-      <path value="$PROJECT_DIR$/vendor/daverandom/libdns" />
-      <path value="$PROJECT_DIR$/vendor/amphp/sync" />
     </include_path>
   </component>
   <component name="ProjectId" id="1pOPBih1EN6xFvK8yzLBpLYMR2x" />
@@ -248,7 +231,8 @@
       <workItem from="1619097939728" duration="16797000" />
       <workItem from="1619259044654" duration="14935000" />
       <workItem from="1620038703444" duration="447000" />
-      <workItem from="1620041274417" duration="16433000" />
+      <workItem from="1620041274417" duration="17075000" />
+      <workItem from="1620297846858" duration="4504000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;api platform for post request applied &quot;">
       <created>1616211797139</created>
@@ -285,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620092685488</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="&quot;some change applied on tourist pagination  &quot;">
+      <created>1620209828110</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1620209828125</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -361,10 +352,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="394" y="85" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1617198235972" />
-    <state x="275" y="95" key="Vcs.Push.Dialog.v2" timestamp="1620093181193">
+    <state x="275" y="95" key="Vcs.Push.Dialog.v2" timestamp="1620209833714">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="95" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1620093181193" />
+    <state x="275" y="95" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1620209833714" />
     <state x="339" y="157" key="run.anything.popup" timestamp="1615894798977">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
