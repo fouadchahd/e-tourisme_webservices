@@ -51,8 +51,8 @@ class TypeOfAttraction
     /**
      * @Groups({"read_subresource","toa:read","poi_item:read"})
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotNull(message="please provide a valid type of attraction name")
-     * @Assert\NotBlank(message="please provide a valid type of attraction name")
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
      */
     private $type;
 
