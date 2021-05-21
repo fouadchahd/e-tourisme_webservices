@@ -21,7 +21,8 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * attributes={"pagination_client_enabled"=true,
  *     "pagination_client_items_per_page"=true
  *    },
- * normalizationContext={"groups"={"tourist:read"},"skip_null_values"=false}
+ * normalizationContext={"groups"={"tourist:read"},"skip_null_values"=false},
+ * denormalizationContext={"groups"={"tourist:write"}}
  * )
  * @ORM\Entity(repositoryClass=TouristRepository::class)
  * @UniqueEntity("email",message="this email is already used")
@@ -54,13 +55,13 @@ class Tourist implements UserInterface
      * @Assert\NotNull
      * @Assert\NotBlank
      * @Assert\Email( message = "The email '{{ value }}' is not a valid email.")
-     * @Groups({"tourist:read"})
+     * @Groups({"tourist:read","tourist:write"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
-     * @Groups({"tourist:read"})
+     * @Groups({"tourist:read","tourist:write"})
      */
     private $roles = [];
 
@@ -70,25 +71,26 @@ class Tourist implements UserInterface
      * @Assert\NotNull(message="the password field should not be null")
      * @Assert\NotBlank
      * @Assert\Length(min=8,minMessage="Use at least 8 characters")
+     * @Groups({"tourist:write")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"tourist:read"})
+     * @Groups({"tourist:read","tourist:write"})
      */
     private $nationality;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"tourist:read"})
+     * @Groups({"tourist:read","tourist:write"})
      */
     private $pseudo;
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
      * @Assert\Choice(choices=Tourist::Genders, message="Choose a valid gender.")
-     * @Groups({"tourist:read"})
+     * @Groups({"tourist:read","tourist:write"})
      */
     private $gender;
 
@@ -96,7 +98,7 @@ class Tourist implements UserInterface
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull
      * @Assert\NotBlank
-     * @Groups({"tourist:read"})
+     * @Groups({"tourist:read","tourist:write"})
      */
     private $firstName;
 
@@ -104,25 +106,25 @@ class Tourist implements UserInterface
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull
      * @Assert\NotBlank
-     * @Groups({"tourist:read"})
+     * @Groups({"tourist:read","tourist:write"})
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"tourist:read"})
+     * @Groups({"tourist:read","tourist:write"})
      */
     private $registeredAt;
 
     /**
      * @ORM\OneToOne(targetEntity=Photo::class, cascade={"persist", "remove"})
-     * @Groups({"tourist:read"})
+     * @Groups({"tourist:read","tourist:write"})
      */
     private $profilePicture;
 
     /**
      * @ORM\Column(type="boolean")
-     * @Groups({"tourist:read"})
+     * @Groups({"tourist:read")
      */
     private $isAdmin;
 
