@@ -31,6 +31,7 @@ class Address
     /**
      * @Groups({"poi:write","poi_item:read"})
      * @Assert\NotNull(message="latitude propertie should not be null")
+     * @Assert\NotBlank()
      * @ORM\Column(type="float")
      */
     private $latitude;
@@ -38,6 +39,7 @@ class Address
     /**
      * @Groups({"poi:write","poi_item:read"})
      * @Assert\NotNull(message="longitude propertie should not be null")
+     * @Assert\NotBlank()
      * @ORM\Column(type="float")
      */
     private $longitude;

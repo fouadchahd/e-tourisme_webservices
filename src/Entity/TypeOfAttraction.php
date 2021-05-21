@@ -44,7 +44,7 @@ class TypeOfAttraction
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\Column(type="integer")
-     * @Groups({"read_subresource","toa:read"})
+     * @Groups({"read_subresource","toa:read","poi:write"})
      */
     private $id;
 
