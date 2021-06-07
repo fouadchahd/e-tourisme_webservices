@@ -39,13 +39,16 @@ class JWTCreateSubscriber
 
         if ($currentUser instanceof Tourist) {
             $data['data'] = array(
-                'id'        => $currentUser->getId(),
-                'email'     => $currentUser->getEmail(),
-                'pseudo'    => $currentUser->getPseudo(),
-                'firstName' => $currentUser->getLastName(),
-                'lastName'  => $currentUser->getLastName(),
-                'gender'    => $currentUser->getGender(),
-                'roles'     => $currentUser->getRoles(),
+                'id'             => $currentUser->getId(),
+                'email'          => $currentUser->getEmail(),
+                'pseudo'         => $currentUser->getPseudo(),
+                'firstName'      => $currentUser->getFirstName(),
+                'lastName'       => $currentUser->getLastName(),
+                'roles'          =>$currentUser->getRoles(),
+                'gender'         => $currentUser->getGender(),
+                'nationality'    => $currentUser->getNationality(),
+                'registeredAt'   => $currentUser->getRegisteredAt(),
+                'profilePicture' => $currentUser->getProfilePicture(),
             );
         }
 

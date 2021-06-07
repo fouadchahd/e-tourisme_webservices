@@ -71,7 +71,7 @@ class Tourist implements UserInterface
      * @Assert\NotNull(message="the password field should not be null")
      * @Assert\NotBlank
      * @Assert\Length(min=8,minMessage="Use at least 8 characters")
-     * @Groups({"tourist:write")
+     * @Groups({"tourist:write"})
      */
     private $password;
 
@@ -124,7 +124,7 @@ class Tourist implements UserInterface
 
     /**
      * @ORM\Column(type="boolean")
-     * @Groups({"tourist:read")
+     * @Groups({"tourist:read"})
      */
     private $isAdmin;
 

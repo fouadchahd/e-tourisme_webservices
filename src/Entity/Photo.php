@@ -2,18 +2,22 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PhotoRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\{ExistsFilter};
 
 /**
  * @ApiResource(normalizationContext={"skip_null_values"=false})
+ * @ApiFilter(ExistsFilter::class, properties={"poi"})
  * @ORM\Entity(repositoryClass=PhotoRepository::class)
  */
 class Photo
 {
+    #api/photos.json?exists[poi]=true/false
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -39,7 +43,6 @@ class Photo
 
     /**
      * @ORM\ManyToOne(targetEntity=Poi::class, inversedBy="photo")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $poi;
 

@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\{SearchFilter};
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\{SearchFilter,ExistsFilter};
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -41,19 +41,23 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(SearchFilter::class, properties={
  *                              "typeOfAttraction": "exact",
  *                              "typeOfAttraction.parentType": "exact",
- *                              "address.city": "exact"
+ *                              "address.city": "exact",
+ *                              "name":"ipartial"
  *            })
+ * @ApiFilter(ExistsFilter::class, properties={"parent"})
  * @ORM\Entity(repositoryClass=PoiRepository::class)
  */
 class Poi
 {
-#http://localhost:8000/api/pois.json?typeOfAttraction.parentType=4
-#http://localhost:8000/api/pois.json?typeOfAttraction=7
-
+#/api/pois.json?typeOfAttraction.parentType=4
+#/api/pois.json?typeOfAttraction=7
+#/api/pois.json?exists[parent]=true/false
+#/api/pois.json?pagination=true&itemsPerPage=X
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"poi_item:read"})
      */
     private $id;
 
@@ -98,6 +102,12 @@ class Poi
     private $photo;
 
     /**
+     * @ORM\OneToOne(targetEntity=Address::class, cascade={"all"})
+     * @Groups({"poi:write","poi_item:read"})
+     */
+    private $address;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Poi::class, inversedBy="children")
      * @Groups({"poi:write","poi_item:read"})
      * @ApiProperty(readableLink=false, writableLink=false)
@@ -117,12 +127,7 @@ class Poi
      */
     private $typeOfAttraction;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Address::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     * @Groups({"poi:write","poi_item:read"})
-     */
-    private $address;
+
 
     /**
      * @ORM\OneToMany(targetEntity=Review::class, mappedBy="poi", orphanRemoval=true)
