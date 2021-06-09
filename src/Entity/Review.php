@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ReviewRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -73,6 +74,7 @@ class Review
      */
     public function __construct()
     {
+        $this->createdAt=new DateTime();
     }
 
     public function getId(): ?int
