@@ -13,13 +13,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b77791d-ea00-4377-8409-cf7c6625dcd8" name="Default Changelist" comment="&quot;authorization update&quot;">
-      <change afterPath="$PROJECT_DIR$/src/Entity/LinkedTour.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Tour.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/LinkedTourRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/TourRepository.php" afterDir="false" />
+    <list default="true" id="7b77791d-ea00-4377-8409-cf7c6625dcd8" name="Default Changelist" comment="&quot;before adding the tour and linkedtour entities&quot;">
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210609192359.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210609202108.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Review.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Review.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/LinkedTour.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/LinkedTour.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Poi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Poi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Tour.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tour.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,7 +258,11 @@
       <workItem from="1622635166089" duration="12687000" />
       <workItem from="1622804267863" duration="14022000" />
       <workItem from="1623078595379" duration="2423000" />
-      <workItem from="1623263654886" duration="2479000" />
+      <workItem from="1623263654886" duration="10710000" />
+      <workItem from="1623675746389" duration="1250000" />
+      <workItem from="1624030695479" duration="3123000" />
+      <workItem from="1624242287448" duration="5973000" />
+      <workItem from="1624401288092" duration="2692000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;api platform for post request applied &quot;">
       <created>1616211797139</created>
@@ -336,7 +341,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623085397782</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="&quot;before adding the tour and linkedtour entities&quot;">
+      <created>1623266258986</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1623266258987</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -363,7 +375,8 @@
     <MESSAGE value="&quot;some change applied on tourist pagination  &quot;" />
     <MESSAGE value="&quot;Asserts Translations to FR&quot;" />
     <MESSAGE value="&quot;authorization update&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;authorization update&quot;" />
+    <MESSAGE value="&quot;before adding the tour and linkedtour entities&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;before adding the tour and linkedtour entities&quot;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="493" y="242" key="#Composer" timestamp="1615051484889">
@@ -414,10 +427,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="394" y="85" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1617198235972" />
-    <state x="275" y="95" key="Vcs.Push.Dialog.v2" timestamp="1623085450989">
+    <state x="275" y="95" key="Vcs.Push.Dialog.v2" timestamp="1623266268906">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="95" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1623085450989" />
+    <state x="275" y="95" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1623266268906" />
     <state x="339" y="157" key="run.anything.popup" timestamp="1615894798977">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

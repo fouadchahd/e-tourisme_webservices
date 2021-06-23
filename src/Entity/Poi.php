@@ -42,7 +42,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *                              "typeOfAttraction": "exact",
  *                              "typeOfAttraction.parentType": "exact",
  *                              "address.city": "exact",
- *                              "name":"ipartial"
+ *                              "name":"ipartial",
+ *                               "linkedTours.tour":"exact"
  *            })
  * @ApiFilter(ExistsFilter::class, properties={"parent"})
  * @ORM\Entity(repositoryClass=PoiRepository::class)
@@ -52,6 +53,10 @@ class Poi
 #/api/pois.json?typeOfAttraction.parentType=4
 #/api/pois.json?typeOfAttraction=7
 #/api/pois.json?exists[parent]=true/false
+#/api/pois.json?linkedTours.tour=@id
+#/api/pois.json?name=@partOfname
+#/api/pois.json?name[]=@partOfname1&name=@partOfname2
+#/api/pois.json?address.city=@cityId
 #/api/pois.json?pagination=true&itemsPerPage=X
     /**
      * @ORM\Id
@@ -135,6 +140,11 @@ class Poi
      */
     private $reviews;
 
+    /**
+     * @ORM\OneToMany(targetEntity=LinkedTour::class, mappedBy="poi", orphanRemoval=true)
+     */
+    private $linkedTours;
+
 
 
     public function __construct()
@@ -145,6 +155,7 @@ class Poi
         $this->children = new ArrayCollection();
         $this->createdAt=new DateTime();
         $this->reviews = new ArrayCollection();
+        $this->linkedTours = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -385,5 +396,35 @@ class Poi
        }
         return $som/$reviews->count();
 
+    }
+
+    /**
+     * @return Collection|LinkedTour[]
+     */
+    public function getLinkedTours(): Collection
+    {
+        return $this->linkedTours;
+    }
+
+    public function addLinkedTour(LinkedTour $linkedTour): self
+    {
+        if (!$this->linkedTours->contains($linkedTour)) {
+            $this->linkedTours[] = $linkedTour;
+            $linkedTour->setPoi($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLinkedTour(LinkedTour $linkedTour): self
+    {
+        if ($this->linkedTours->removeElement($linkedTour)) {
+            // set the owning side to null (unless already changed)
+            if ($linkedTour->getPoi() === $this) {
+                $linkedTour->setPoi(null);
+            }
+        }
+
+        return $this;
     }
 }

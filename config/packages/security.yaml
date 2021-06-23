@@ -105,7 +105,7 @@ security:
         - { path: ^/api/type_of_attractions, roles: ROLE_ADMIN, methods:['POST','PUT']}
         - { path: ^/api/audios, roles: ROLE_ADMIN, methods:['POST','PUT']}
         - { path: ^/api/reviews,roles: IS_AUTHENTICATED_FULLY, methods:['POST','PUT']}
-        - { path: ^/api/cities, roles: IS_AUTHENTICATED_FULLY, methods:['POST','PUT']}
+        - { path: ^/api/cities, roles: [ROLE_ADMIN], methods:['POST','PUT']}
         - { path: ^/api/descriptions, roles: ROLE_ADMIN, methods:['POST','PUT']}
         - { path: ^/api/languages, roles: ROLE_ADMIN, methods:['POST','PUT']}
         - { path: ^/api/login,  roles: IS_AUTHENTICATED_ANONYMOUSLY }
