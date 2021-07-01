@@ -38,17 +38,21 @@ class JWTCreateSubscriber
         }
 
         if ($currentUser instanceof Tourist) {
+            $pictureUrl=null;
+            if($currentUser->getProfilePicture()!=null){
+                $pictureUrl= $currentUser->getProfilePicture()->getUrl();
+            }
             $data['data'] = array(
                 'id'             => $currentUser->getId(),
                 'email'          => $currentUser->getEmail(),
                 'pseudo'         => $currentUser->getPseudo(),
                 'firstName'      => $currentUser->getFirstName(),
                 'lastName'       => $currentUser->getLastName(),
-                'roles'          =>$currentUser->getRoles(),
+                'roles'          => $currentUser->getRoles(),
                 'gender'         => $currentUser->getGender(),
+                'bio'            => $currentUser->getBio(),
                 'nationality'    => $currentUser->getNationality(),
-                'registeredAt'   => $currentUser->getRegisteredAt(),
-                'profilePicture' => $currentUser->getProfilePicture(),
+                'profilePicture' => $pictureUrl,
             );
         }
 

@@ -128,6 +128,12 @@ class Tourist implements UserInterface
      */
     private $isAdmin;
 
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     * @Groups({"tourist:read"})
+     */
+    private $bio;
+
 
     public function getId(): ?int
     {
@@ -300,6 +306,18 @@ class Tourist implements UserInterface
     public function setIsAdmin(bool $isAdmin): self
     {
         $this->isAdmin = $isAdmin;
+
+        return $this;
+    }
+
+    public function getBio(): ?string
+    {
+        return $this->bio;
+    }
+
+    public function setBio(?string $bio): self
+    {
+        $this->bio = $bio;
 
         return $this;
     }

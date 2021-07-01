@@ -31,7 +31,7 @@ class Photo
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull(message="The url field should not be null.")
      * @Assert\NotBlank(message="The url field should not be blank.")
-     * @Groups({"poi:write","poi_item:read","tourist:write","city:write","city:read"})
+     * @Groups({"poi:write","poi_item:read","tourist:write","city:write","city:read","tourist:read"})
      */
     private $url;
 
