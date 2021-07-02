@@ -27,7 +27,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * @ORM\Entity(repositoryClass=TouristRepository::class)
  * @UniqueEntity("email",message="this email is already used")
  * @ApiFilter(BooleanFilter::class,properties={"isAdmin"})
- * @ApiFilter (SearchFilter::class, properties={"id": "exact", "pseudo": "istart","lastName": "istart" ,"firstName": "istart","$nationality":"iexact"})
+ * @ApiFilter (SearchFilter::class, properties={"id": "exact", "pseudo": "iexact","lastName": "istart" ,"firstName": "istart","$nationality":"iexact"})
  */
 class Tourist implements UserInterface
 {   #id_email_role_password_firstname_lastname_pseudo_registeredAt_profilePicture_nationality_gender
@@ -130,7 +130,7 @@ class Tourist implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
-     * @Groups({"tourist:read"})
+     * @Groups({"tourist:read","tourist:write"})
      */
     private $bio;
 

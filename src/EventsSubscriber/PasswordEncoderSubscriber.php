@@ -39,7 +39,7 @@ class PasswordEncoderSubscriber implements EventSubscriberInterface
             $tourist->setPassword($hashPass);
             if ($method===Request::METHOD_POST){
                 try {
-                    $tourist->setPseudo($tourist->getFirstName() . $tourist->getLastName() . random_int(1111, 9999));
+                    $tourist->setPseudo(strtolower($tourist->getFirstName()) .  strtolower($tourist->getLastName()) . random_int(11, 9999));
                 } catch (Exception $e) {
                     $tourist->setPseudo($tourist->getFirstName() . $tourist->getLastName());            }
             }

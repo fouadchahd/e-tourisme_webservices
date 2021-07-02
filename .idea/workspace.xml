@@ -13,17 +13,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b77791d-ea00-4377-8409-cf7c6625dcd8" name="Default Changelist" comment="&quot;before adding the tour and linkedtour entities&quot;">
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210626215445.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/LogoutController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/logout/index.html.twig" afterDir="false" />
+    <list default="true" id="7b77791d-ea00-4377-8409-cf7c6625dcd8" name="Default Changelist" comment="&quot;add bio to tourist model&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210609214555.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20210609214555.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Photo.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Photo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Tourist.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tourist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventsSubscriber/JWTCreateSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventsSubscriber/JWTCreateSubscriber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EventsSubscriber/PasswordEncoderSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventsSubscriber/PasswordEncoderSubscriber.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,7 +263,8 @@
       <workItem from="1624572636945" duration="3494000" />
       <workItem from="1624615958195" duration="18759000" />
       <workItem from="1624858568566" duration="611000" />
-      <workItem from="1624937229417" duration="10020000" />
+      <workItem from="1624937229417" duration="10298000" />
+      <workItem from="1625148411812" duration="13446000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;api platform for post request applied &quot;">
       <created>1616211797139</created>
@@ -356,7 +350,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623266258987</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="&quot;add bio to tourist model&quot;">
+      <created>1625141906415</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1625141906415</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -384,7 +385,8 @@
     <MESSAGE value="&quot;Asserts Translations to FR&quot;" />
     <MESSAGE value="&quot;authorization update&quot;" />
     <MESSAGE value="&quot;before adding the tour and linkedtour entities&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;before adding the tour and linkedtour entities&quot;" />
+    <MESSAGE value="&quot;add bio to tourist model&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;add bio to tourist model&quot;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="60" y="204" key="#SQL_Dialects" timestamp="1624619837269">
@@ -415,10 +417,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="394" y="85" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1624621315901" />
-    <state x="275" y="95" key="Vcs.Push.Dialog.v2" timestamp="1623266268906">
+    <state x="275" y="95" key="Vcs.Push.Dialog.v2" timestamp="1625141956111">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="95" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1623266268906" />
+    <state x="275" y="95" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1625141956111" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1617023601801">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
