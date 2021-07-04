@@ -35,7 +35,6 @@ class PasswordEncoderSubscriber implements EventSubscriberInterface
         $tourist=$event->getControllerResult();
         $method=$event->getRequest()->getMethod();
         if ($tourist instanceof Tourist){
-            var_dump( "hii ".$tourist->getPassword() );
             if($method===Request::METHOD_PATCH ||$method===Request::METHOD_PUT){
                 $content= json_decode($event->getRequest()->getContent()) ;
                 $var = get_object_vars($content);
