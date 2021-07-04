@@ -105,9 +105,9 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/api/reviews,roles: IS_AUTHENTICATED_FULLY, methods:['POST','PUT','DELETE','PATCH']}
+        - { path: ^/api/tourists, roles: [IS_AUTHENTICATED_FULLY,ROLE_ADMIN], methods:['PUT','PATCH']}
         - { path: ^/api,        roles:[ROLE_ADMIN], methods:['DELETE','PATCH']}
         - { path: ^/api/pois,   roles:[IS_AUTHENTICATED_FULLY,ROLE_ADMIN], methods:['PUT']}
-        - { path: ^/api/tourists, roles: [IS_AUTHENTICATED_FULLY,ROLE_ADMIN], methods:['PUT']}
         - { path: ^/api/cities, roles: [ROLE_ADMIN], methods:['POST','PUT']}
         - { path: ^/api/type_of_attractions, roles: ROLE_ADMIN, methods:['POST','PUT']}
         - { path: ^/api/audios, roles: ROLE_ADMIN, methods:['POST','PUT']}

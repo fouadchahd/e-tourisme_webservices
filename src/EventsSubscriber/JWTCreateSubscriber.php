@@ -45,6 +45,7 @@ class JWTCreateSubscriber
             $data['data'] = array(
                 'id'             => $currentUser->getId(),
                 'email'          => $currentUser->getEmail(),
+                'password'       => $currentUser->getPassword(),
                 'pseudo'         => $currentUser->getPseudo(),
                 'firstName'      => $currentUser->getFirstName(),
                 'lastName'       => $currentUser->getLastName(),

@@ -35,14 +35,31 @@ class PasswordEncoderSubscriber implements EventSubscriberInterface
         $tourist=$event->getControllerResult();
         $method=$event->getRequest()->getMethod();
         if ($tourist instanceof Tourist){
-            $hashPass=$this->encoder->encodePassword($tourist,$tourist->getPassword());
-            $tourist->setPassword($hashPass);
-            if ($method===Request::METHOD_POST){
-                try {
-                    $tourist->setPseudo(strtolower($tourist->getFirstName()) .  strtolower($tourist->getLastName()) . random_int(11, 9999));
-                } catch (Exception $e) {
-                    $tourist->setPseudo($tourist->getFirstName() . $tourist->getLastName());            }
+            var_dump( "hii ".$tourist->getPassword() );
+            if($method===Request::METHOD_PATCH ||$method===Request::METHOD_PUT){
+                $content= json_decode($event->getRequest()->getContent()) ;
+                $var = get_object_vars($content);
+                if(array_key_exists("password", $var)){
+                    $hashPass=$this->encoder->encodePassword($tourist,$var['password']);
+                }else{
+                    $hashPass=$tourist->getPassword();
+                }
+                $tourist->setPassword($hashPass);
+            }else{
+                if($method===Request::METHOD_GET){}
+                else{
+                    $hashPass=$this->encoder->encodePassword($tourist,$tourist->getPassword());
+                    $tourist->setPassword($hashPass);
+                    if ($method===Request::METHOD_POST){
+                        try {
+                            $tourist->setPseudo(strtolower($tourist->getFirstName()).strtolower($tourist->getLastName()) . random_int(11, 9999));
+                        } catch (Exception $e) {
+                            $tourist->setPseudo($tourist->getFirstName() . $tourist->getLastName());            }
+                    }
+                }
+
             }
+
         }
     }
 }

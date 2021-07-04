@@ -22,7 +22,14 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *     "pagination_client_items_per_page"=true
  *    },
  * normalizationContext={"groups"={"tourist:read"},"skip_null_values"=false},
- * denormalizationContext={"groups"={"tourist:write"}}
+ * denormalizationContext={"groups"={"tourist:write"},"skip_null_values"=true},
+ * collectionOperations={
+ *     "get",
+ *     "post"={
+ *          "validation_groups"={"Default", "create"}
+ *          }
+ *     },
+ * itemOperations={"delete","patch","get","put","patch"}
  * )
  * @ORM\Entity(repositoryClass=TouristRepository::class)
  * @UniqueEntity("email",message="this email is already used")
@@ -31,6 +38,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  */
 class Tourist implements UserInterface
 {   #id_email_role_password_firstname_lastname_pseudo_registeredAt_profilePicture_nationality_gender
+
 
     /**
      * @ORM\Id
@@ -68,22 +76,21 @@ class Tourist implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Assert\NotNull(message="the password field should not be null")
-     * @Assert\NotBlank
+     * @Assert\NotBlank(groups={"create"})
      * @Assert\Length(min=8,minMessage="Use at least 8 characters")
-     * @Groups({"tourist:write"})
+     * @Groups({"tourist:put","tourist:read","tourist:write"})
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"tourist:read","tourist:write"})
+     * @Groups({"tourist:read","tourist:put","tourist:write"})
      */
     private $nationality;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"tourist:read","tourist:write"})
+     * @Groups({"tourist:read","tourist:put","tourist:write"})
      */
     private $pseudo;
 
@@ -98,7 +105,7 @@ class Tourist implements UserInterface
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull
      * @Assert\NotBlank
-     * @Groups({"tourist:read","tourist:write"})
+     * @Groups({"tourist:read","tourist:write","tourist:put"})
      */
     private $firstName;
 
@@ -106,7 +113,7 @@ class Tourist implements UserInterface
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull
      * @Assert\NotBlank
-     * @Groups({"tourist:read","tourist:write"})
+     * @Groups({"tourist:read","tourist:write","tourist:put"})
      */
     private $lastName;
 
@@ -130,7 +137,7 @@ class Tourist implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
-     * @Groups({"tourist:read","tourist:write"})
+     * @Groups({"tourist:read","tourist:write","tourist:put"})
      */
     private $bio;
 
@@ -201,6 +208,7 @@ class Tourist implements UserInterface
 
     public function setPassword(string $password): self
     {
+        //var_dump($password);
         #$hashedPassword= password_hash($password,PASSWORD_ARGON2ID, ['memory_cost' => 65536, 'time_cost' => 4, 'threads' => 1]);
         $this->password = $password;
         return $this;
