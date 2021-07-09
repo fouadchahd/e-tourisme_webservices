@@ -14,7 +14,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 /**
  * @ApiResource(
  *     normalizationContext={"skip_null_values"=false},
- *                           itemOperations={"put","delete",
+ *                           itemOperations={"put","delete","patch",
  *                              "get"={
  *                                      "normalization_context"={
  *                                              "groups"={"tour:readItem"}
@@ -145,7 +145,6 @@ class Tour
     public function setCity(?City $city): self
     {
         $this->city = $city;
-
         return $this;
     }
 }

@@ -15,10 +15,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7b77791d-ea00-4377-8409-cf7c6625dcd8" name="Default Changelist" comment="&quot;fixe the password issues in put patch request&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Tourist.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tourist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventsSubscriber/JWTCreateSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventsSubscriber/JWTCreateSubscriber.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventsSubscriber/PasswordEncoderSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventsSubscriber/PasswordEncoderSubscriber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Tour.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tour.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,7 +264,9 @@
       <workItem from="1624858568566" duration="611000" />
       <workItem from="1624937229417" duration="10298000" />
       <workItem from="1625148411812" duration="13887000" />
-      <workItem from="1625318312631" duration="31037000" />
+      <workItem from="1625318312631" duration="35145000" />
+      <workItem from="1625650805435" duration="1711000" />
+      <workItem from="1625846493163" duration="275000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;api platform for post request applied &quot;">
       <created>1616211797139</created>
@@ -367,7 +366,21 @@
       <option name="project" value="LOCAL" />
       <updated>1625213824539</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="&quot;fixe the password issues in put patch request&quot;">
+      <created>1625381871231</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1625381871231</updated>
+    </task>
+    <task id="LOCAL-00016" summary="&quot;fixe the password issues in put patch request&quot;">
+      <created>1625382213107</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1625382213107</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,10 +441,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="394" y="85" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1624621315901" />
-    <state x="275" y="95" key="Vcs.Push.Dialog.v2" timestamp="1625213871999">
+    <state x="275" y="95" key="Vcs.Push.Dialog.v2" timestamp="1625382221533">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="95" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1625213871999" />
+    <state x="275" y="95" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1625382221533" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1617023601801">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
